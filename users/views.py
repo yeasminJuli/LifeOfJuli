@@ -8,8 +8,10 @@ def register(request):
         if form.is_valid():
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}!')
-            return redirect('Phases-home')
+            return redirect('home')
         else:
             form = UserCreationForm()
-        return render(request, 'users/register.html', {'form': form}) 
-
+            return render(request, 'users/register.html', {'form': form})
+    else:
+        form = UserCreationForm()
+        return render(request, 'users/register.html', {'form': form})
